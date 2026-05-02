@@ -1,0 +1,30 @@
+{
+  "lang": "ind",
+  "name": "Hindi",
+  "cultures": [
+    "hi-Latn",
+    "hi-Latn-IN"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "yah thred abhee taiyaar nahin hai."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "jab thred pahale se chal raha ho, to use reejenaret nahin kiya ja sakata."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "yah thred reejenaret nahin kiya ja sakata:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "pairaameetar ekzeekyootar bataana zarooree hai."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "chaild thred indeks tay renj se zyaada hai, aur childran thred kaunt hai..."
+    }
+  ]
+}

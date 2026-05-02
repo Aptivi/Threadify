@@ -1,0 +1,30 @@
+{
+  "lang": "ukr",
+  "name": "Ukrainian",
+  "cultures": [
+    "uk",
+    "uk-UA"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Цей потік ще не готовий."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Неможливо повторно створити потік, поки він вже запущений."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Неможливо повторно створити цей потік:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Потрібно вказати параметр executor."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Індекс дочірнього потоку перевищує дозволений діапазон, а кількість дочірніх потоків..."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "lang": "chi-T",
+  "name": "Chinese (Simplified)",
+  "cultures": [
+    "zh",
+    "zh-CN",
+    "zh-HK",
+    "zh-MO",
+    "zh-SG",
+    "zh-Hans",
+    "zh-Hans-CN",
+    "zh-Hans-HK",
+    "zh-Hans-MO",
+    "zh-Hans-SG"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "此线程尚未准备就绪。"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "线程正在运行时无法重新生成。"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "无法重新生成此线程："
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "需要指定参数 executor。"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "子线程索引超出允许范围，且子线程数为..."
+    }
+  ]
+}

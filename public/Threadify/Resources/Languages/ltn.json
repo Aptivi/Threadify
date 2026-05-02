@@ -1,0 +1,30 @@
+{
+  "lang": "ltn",
+  "name": "Latin",
+  "cultures": [
+    "la",
+    "la-VA"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Hoc filum nondum paratum est."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Filum regenerare non potest dum iam currit."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Hoc filum regenerare non potest:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Executor parametri specificandus est."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Index fili filii ambitum permissum excedit, et numerus filorum filii est..."
+    }
+  ]
+}

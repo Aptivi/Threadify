@@ -1,0 +1,30 @@
+{
+  "lang": "ndo",
+  "name": "Indonesian",
+  "cultures": [
+    "id",
+    "id-ID"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Thread ini belum siap."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Tidak dapat membuat ulang thread saat sudah berjalan."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Tidak dapat membuat ulang thread ini:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Parameter executor perlu ditentukan."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Indeks thread anak melebihi rentang yang diizinkan, dan jumlah thread anak adalah..."
+    }
+  ]
+}

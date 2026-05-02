@@ -1,0 +1,31 @@
+{
+  "lang": "iri",
+  "name": "Irish",
+  "cultures": [
+    "ga",
+    "ga-GB",
+    "ga-IE"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Níl an snáithe seo réidh fós."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Ní féidir an snáithe a athghiniúint agus é ag rith cheana féin."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Ní féidir an snáithe seo a athghiniúint:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Ní mór an paraiméadar seiceadóra a shonrú."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Tá innéacs an snáithe linbh níos mó ná an raon ceadaithe, agus tá comhaireamh an snáithe linbh..."
+    }
+  ]
+}

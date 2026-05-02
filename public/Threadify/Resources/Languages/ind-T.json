@@ -1,0 +1,30 @@
+{
+  "lang": "ind-T",
+  "name": "Hindi",
+  "cultures": [
+    "hi",
+    "hi-IN"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "यह थ्रेड अभी तैयार नहीं है।"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "जब थ्रेड पहले से चल रहा हो, तो उसे रीजेनरेट नहीं किया जा सकता।"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "यह थ्रेड रीजेनरेट नहीं किया जा सकता:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "पैरामीटर एक्ज़ीक्यूटर बताना ज़रूरी है।"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "चाइल्ड थ्रेड इंडेक्स तय रेंज से ज़्यादा है, और चिल्ड्रन थ्रेड काउंट है..."
+    }
+  ]
+}

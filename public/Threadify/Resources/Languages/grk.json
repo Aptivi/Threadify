@@ -1,0 +1,31 @@
+{
+  "lang": "grk",
+  "name": "Greek",
+  "cultures": [
+    "el",
+    "el-CY",
+    "el-GR"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Αυτό το νήμα δεν είναι ακόμα έτοιμο."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Δεν είναι δυνατή η αναγέννηση του νήματος ενώ ήδη εκτελείται."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Δεν είναι δυνατή η αναγέννηση αυτού του νήματος:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Πρέπει να καθοριστεί ο εκτελεστής παραμέτρων."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Ο δείκτης του θυγατρικού νήματος υπερβαίνει το επιτρεπόμενο εύρος και ο αριθμός των θυγατρικών νημάτων είναι..."
+    }
+  ]
+}

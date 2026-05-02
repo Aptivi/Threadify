@@ -316,7 +316,7 @@ namespace Threadify.Manager
         public void AddChild(string threadName, bool background, ThreadStart executor)
         {
             if (executor is null)
-                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENUMM"));
+                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL"));
 
             ThreadInstance target = new(threadName, background, executor, true, this);
             childThreads.Add(target);
@@ -334,7 +334,7 @@ namespace Threadify.Manager
         public void AddChild(string threadName, bool background, ParameterizedThreadStart executor)
         {
             if (executor is null)
-                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENUMM"));
+                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL"));
 
             ThreadInstance target = new(threadName, background, executor, true, this);
             childThreads.Add(target);
@@ -351,7 +351,7 @@ namespace Threadify.Manager
         public ThreadInstance GetChild(int threadIdx)
         {
             if (threadIdx < 0 || threadIdx >= childThreads.Count)
-                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID"));
+                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID") + $" {childThreads.Count} [{threadIdx + 1}]");
 
             return childThreads[threadIdx];
         }

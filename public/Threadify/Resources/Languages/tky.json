@@ -1,0 +1,31 @@
+{
+  "lang": "tky",
+  "name": "Turkish",
+  "cultures": [
+    "tr",
+    "tr-CY",
+    "tr-TR"
+  ],
+  "locs": [
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_NOTREADY",
+      "text": "Bu iş parçacığı henüz hazır değil."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_REGENRUNNING",
+      "text": "Çalışmakta olan bir iş parçacığı yeniden oluşturulamaz."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN",
+      "text": "Bu iş parçacığı yeniden oluşturulamıyor:"
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENULL",
+      "text": "Yürütücü parametresinin belirtilmesi gerekiyor."
+    },
+    {
+      "loc": "THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID",
+      "text": "Alt iş parçacığı dizini izin verilen aralığı aşıyor ve alt iş parçacığı sayısı..."
+    }
+  ]
+}
