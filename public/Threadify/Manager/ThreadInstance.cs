@@ -32,8 +32,8 @@ namespace Threadify.Manager
     public class ThreadInstance
     {
 
-        internal Thread BaseThread;
-        internal readonly List<ThreadInstance> ChildThreads = [];
+        internal Thread baseThread;
+        internal readonly List<ThreadInstance> childThreads = [];
         private bool isReady;
         private bool isStopping;
         private bool isFailed;
@@ -59,7 +59,7 @@ namespace Threadify.Manager
         /// Is the thread alive?
         /// </summary>
         public bool IsAlive =>
-            BaseThread.IsAlive;
+            baseThread.IsAlive;
 
         /// <summary>
         /// Is the thread ready to start?
@@ -95,88 +95,84 @@ namespace Threadify.Manager
         /// Thread ID for this thread
         /// </summary>
         public int ThreadId =>
-            BaseThread.ManagedThreadId;
+            baseThread.ManagedThreadId;
 
         /// <summary>
         /// Gets child threads count
         /// </summary>
         public int ChildThreadCount =>
-            ChildThreads.Count;
+            childThreads.Count;
 
         /// <summary>
         /// Makes a new thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
-        public ThreadInstance(string ThreadName, bool Background, ThreadStart Executor) :
-            this(ThreadName, Background, Executor, false, null)
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
+        public ThreadInstance(string threadName, bool background, ThreadStart executor) :
+            this(threadName, background, executor, false, null)
         { }
 
         /// <summary>
         /// Makes a new thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
-        /// <param name="Child">Specifies whether the thread is going to be a child thread</param>
-        /// <param name="ParentThread">If <paramref name="Child"/> is on, this should be specified to specify a thread that spawned the parent thread</param>
-        private ThreadInstance(string ThreadName, bool Background, ThreadStart Executor, bool Child, ThreadInstance? ParentThread)
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
+        /// <param name="child">Specifies whether the thread is going to be a child thread</param>
+        /// <param name="parentThread">If <paramref name="child"/> is on, this should be specified to specify a thread that spawned the parent thread</param>
+        private ThreadInstance(string threadName, bool background, ThreadStart executor, bool child, ThreadInstance? parentThread)
         {
-            InitialThreadDelegate = Executor;
-            Executor = () => StartInternalNormal(InitialThreadDelegate);
-            BaseThread = new Thread(Executor) { Name = ThreadName, IsBackground = Background };
+            InitialThreadDelegate = executor;
+            executor = () => StartInternalNormal(InitialThreadDelegate);
+            baseThread = new Thread(executor) { Name = threadName, IsBackground = background };
             IsParameterized = false;
-            ThreadDelegate = Executor;
-            Name = ThreadName;
-            IsBackground = Background;
+            ThreadDelegate = executor;
+            Name = threadName;
+            IsBackground = background;
             isReady = true;
-            if (Child && ParentThread is null)
-            {
-                Child = false;
-            }
-            if (!Child)
+            if (child && parentThread is null)
+                child = false;
+            if (!child)
                 ThreadManager.threadInstances.Add(this);
             else
-                parentThread = ParentThread;
+                this.parentThread = parentThread;
         }
 
         /// <summary>
         /// Makes a new thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
-        public ThreadInstance(string ThreadName, bool Background, ParameterizedThreadStart Executor) :
-            this(ThreadName, Background, Executor, false, null)
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
+        public ThreadInstance(string threadName, bool background, ParameterizedThreadStart executor) :
+            this(threadName, background, executor, false, null)
         { }
 
         /// <summary>
         /// Makes a new thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
-        /// <param name="Child">Specifies whether the thread is going to be a child thread</param>
-        /// <param name="ParentThread">If <paramref name="Child"/> is on, this should be specified to specify a thread that spawned the parent thread</param>
-        private ThreadInstance(string ThreadName, bool Background, ParameterizedThreadStart Executor, bool Child, ThreadInstance? ParentThread)
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
+        /// <param name="child">Specifies whether the thread is going to be a child thread</param>
+        /// <param name="parentThread">If <paramref name="child"/> is on, this should be specified to specify a thread that spawned the parent thread</param>
+        private ThreadInstance(string threadName, bool background, ParameterizedThreadStart executor, bool child, ThreadInstance? parentThread)
         {
-            InitialThreadDelegateParameterized = Executor;
-            Executor = (Parameter) => StartInternalParameterized(InitialThreadDelegateParameterized, Parameter);
-            BaseThread = new Thread(Executor) { Name = ThreadName, IsBackground = Background };
+            InitialThreadDelegateParameterized = executor;
+            executor = (Parameter) => StartInternalParameterized(InitialThreadDelegateParameterized, Parameter);
+            baseThread = new Thread(executor) { Name = threadName, IsBackground = background };
             IsParameterized = true;
-            ThreadDelegateParameterized = Executor;
-            Name = ThreadName;
-            IsBackground = Background;
+            ThreadDelegateParameterized = executor;
+            Name = threadName;
+            IsBackground = background;
             isReady = true;
-            if (Child && ParentThread is null)
-            {
-                Child = false;
-            }
-            if (!Child)
+            if (child && parentThread is null)
+                child = false;
+            if (!child)
                 ThreadManager.threadInstances.Add(this);
             else
-                parentThread = ParentThread;
+                this.parentThread = parentThread;
         }
 
         /// <summary>
@@ -186,32 +182,32 @@ namespace Threadify.Manager
         {
             if (!IsReady)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_NOTREADY"));
-            if (BaseThread.ThreadState.HasFlag(ThreadState.Stopped) || IsAlive)
+            if (baseThread.ThreadState.HasFlag(ThreadState.Stopped) || IsAlive)
                 return;
 
             // Start the parent thread
             isFailed = false;
             threadFailures.Clear();
-            BaseThread.Start();
+            baseThread.Start();
             StartChildThreads(null);
         }
 
         /// <summary>
         /// Starts the thread
         /// </summary>
-        /// <param name="Parameter">The parameter class instance containing multiple parameters, or a usual single parameter</param>
-        public void Start(object? Parameter)
+        /// <param name="parameter">The parameter class instance containing multiple parameters, or a usual single parameter</param>
+        public void Start(object? parameter)
         {
             if (!IsReady)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_NOTREADY"));
-            if (BaseThread.ThreadState.HasFlag(ThreadState.Stopped) || IsAlive)
+            if (baseThread.ThreadState.HasFlag(ThreadState.Stopped) || IsAlive)
                 return;
 
             // Start the parent thread
             isFailed = false;
             threadFailures.Clear();
-            BaseThread.Start(Parameter);
-            StartChildThreads(Parameter);
+            baseThread.Start(parameter);
+            StartChildThreads(parameter);
         }
 
         /// <summary>
@@ -229,7 +225,7 @@ namespace Threadify.Manager
             try
             {
                 isStopping = true;
-                BaseThread.Interrupt();
+                baseThread.Interrupt();
                 StopChildThreads();
                 if (!Wait(60000))
                 isReady = false;
@@ -251,12 +247,12 @@ namespace Threadify.Manager
         /// </summary>
         public void Wait()
         {
-            if (!BaseThread.IsAlive)
+            if (!baseThread.IsAlive)
                 return;
 
             try
             {
-                BaseThread.Join();
+                baseThread.Join();
                 WaitForChildThreads();
             }
             catch (Exception ex) when (ex.GetType().Name != nameof(ThreadInterruptedException) && ex.GetType().Name != nameof(ThreadStateException))
@@ -271,13 +267,13 @@ namespace Threadify.Manager
         /// </summary>
         public bool Wait(int timeoutMs)
         {
-            if (!BaseThread.IsAlive)
+            if (!baseThread.IsAlive)
                 return true;
 
             try
             {
                 bool SuccessfullyWaited = true;
-                if (!BaseThread.Join(timeoutMs))
+                if (!baseThread.Join(timeoutMs))
                     SuccessfullyWaited = false;
                 if (!WaitForChildThreads(timeoutMs))
                     SuccessfullyWaited = false;
@@ -297,33 +293,33 @@ namespace Threadify.Manager
         public void Regen()
         {
             // We can't regen the thread unless Stop() is called first.
-            if (IsReady && BaseThread.ThreadState == ThreadState.Running)
+            if (IsReady && baseThread.ThreadState == ThreadState.Running)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_REGENRUNNING"));
 
             // Remake the thread to avoid illegal state exceptions
             if (IsParameterized && ThreadDelegateParameterized is not null)
-                BaseThread = new Thread(ThreadDelegateParameterized) { Name = Name, IsBackground = IsBackground };
+                baseThread = new Thread(ThreadDelegateParameterized) { Name = Name, IsBackground = IsBackground };
             else if (ThreadDelegate is not null)
-                BaseThread = new Thread(ThreadDelegate) { Name = Name, IsBackground = IsBackground };
+                baseThread = new Thread(ThreadDelegate) { Name = Name, IsBackground = IsBackground };
             else
-                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN") + $". {Name}");
+                throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_CANNOTREGEN") + $" {Name}");
             isReady = true;
         }
 
         /// <summary>
         /// Adds the child thread to this parent thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
         /// <exception cref="ThreadingException"></exception>
-        public void AddChild(string ThreadName, bool Background, ThreadStart Executor)
+        public void AddChild(string threadName, bool background, ThreadStart executor)
         {
-            if (Executor is null)
+            if (executor is null)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENUMM"));
 
-            ThreadInstance target = new(ThreadName, Background, Executor, true, this);
-            ChildThreads.Add(target);
+            ThreadInstance target = new(threadName, background, executor, true, this);
+            childThreads.Add(target);
             if (IsAlive && !IsStopping)
                 target.Start();
         }
@@ -331,17 +327,17 @@ namespace Threadify.Manager
         /// <summary>
         /// Adds the child thread to this parent thread
         /// </summary>
-        /// <param name="ThreadName">The thread name</param>
-        /// <param name="Background">Indicates if the thread is background</param>
-        /// <param name="Executor">The thread delegate</param>
+        /// <param name="threadName">The thread name</param>
+        /// <param name="background">Indicates if the thread is background</param>
+        /// <param name="executor">The thread delegate</param>
         /// <exception cref="ThreadingException"></exception>
-        public void AddChild(string ThreadName, bool Background, ParameterizedThreadStart Executor)
+        public void AddChild(string threadName, bool background, ParameterizedThreadStart executor)
         {
-            if (Executor is null)
+            if (executor is null)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_ACTIONCANNOTBENUMM"));
 
-            ThreadInstance target = new(ThreadName, Background, Executor, true, this);
-            ChildThreads.Add(target);
+            ThreadInstance target = new(threadName, background, executor, true, this);
+            childThreads.Add(target);
             if (IsAlive && !IsStopping)
                 target.Start();
         }
@@ -354,10 +350,10 @@ namespace Threadify.Manager
         /// <exception cref="ThreadingException"></exception>
         public ThreadInstance GetChild(int threadIdx)
         {
-            if (threadIdx < 0 || threadIdx >= ChildThreads.Count)
+            if (threadIdx < 0 || threadIdx >= childThreads.Count)
                 throw new ThreadingException(LanguageTools.GetLocalized("THREADIFY_MANAGER_EXCEPTION_CHILDIDXNOTVALID"));
 
-            return ChildThreads[threadIdx];
+            return childThreads[threadIdx];
         }
 
         private void StartInternalNormal(ThreadStart action)
@@ -386,13 +382,13 @@ namespace Threadify.Manager
             }
         }
 
-        private void StartChildThreads(object? Parameter)
+        private void StartChildThreads(object? parameter)
         {
             // Start the child threads
-            foreach (var ChildThread in ChildThreads)
+            foreach (var ChildThread in childThreads)
             {
                 if (ChildThread.IsParameterized)
-                    ChildThread.Start(Parameter);
+                    ChildThread.Start(parameter);
                 else
                     ChildThread.Start();
             }
@@ -401,7 +397,7 @@ namespace Threadify.Manager
         private void StopChildThreads()
         {
             // Stop the child threads
-            var ActiveChildThreads = ChildThreads.Where((thread) => thread.IsAlive).ToArray();
+            var ActiveChildThreads = childThreads.Where((thread) => thread.IsAlive).ToArray();
             foreach (var ChildThread in ActiveChildThreads)
             {
                 ChildThread.Stop();
@@ -411,7 +407,7 @@ namespace Threadify.Manager
         private void WaitForChildThreads()
         {
             // Stop the child threads
-            var ActiveChildThreads = ChildThreads.Where((thread) => thread.IsAlive).ToArray();
+            var ActiveChildThreads = childThreads.Where((thread) => thread.IsAlive).ToArray();
             foreach (var ChildThread in ActiveChildThreads)
             {
                 // Just to make sure
@@ -425,7 +421,7 @@ namespace Threadify.Manager
         private bool WaitForChildThreads(int timeoutMs)
         {
             // Stop the child threads
-            var ActiveChildThreads = ChildThreads.Where((thread) => thread.IsAlive).ToArray();
+            var ActiveChildThreads = childThreads.Where((thread) => thread.IsAlive).ToArray();
             bool SuccessfullyWaited = true;
             foreach (var ChildThread in ActiveChildThreads)
             {

@@ -23,10 +23,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-#if NKS_EXTENSIONS
-using Nitrocid.Base.Kernel.Extensions;
-#endif
-
 namespace Threadify.Manager
 {
     /// <summary>
@@ -53,50 +49,41 @@ namespace Threadify.Manager
         /// Gets active threads
         /// </summary>
         public static List<ThreadInstance> ActiveThreads =>
-            threadInstances.Where(x => x.IsAlive).ToList();
-
-        /// <summary>
-        /// Stops all threads
-        /// </summary>
-        internal static void StopAllThreads()
-        {
-            foreach (ThreadInstance ThreadInstance in ThreadInstances)
-                ThreadInstance.Stop();
-        }
+            [.. threadInstances.Where(x => x.IsAlive)];
 
         /// <summary>
         /// Sleeps until either the time specified, or the current thread is no longer alive.
         /// </summary>
-        /// <param name="Time">Time in milliseconds</param>
-        public static bool SleepNoBlock(long Time) =>
-            Thread.CurrentThread.Join((int)Time);
+        /// <param name="time">Time in milliseconds</param>
+        public static bool SleepNoBlock(long time) =>
+            Thread.CurrentThread.Join((int)time);
 
         /// <summary>
         /// Sleeps until either the time specified, or the thread is no longer alive.
         /// </summary>
-        /// <param name="Time">Time in milliseconds</param>
-        /// <param name="ThreadWork">The working thread</param>
-        public static bool SleepNoBlock(long Time, Thread ThreadWork) =>
-            ThreadWork.Join((int)Time);
+        /// <param name="time">Time in milliseconds</param>
+        /// <param name="threadWork">The working thread</param>
+        public static bool SleepNoBlock(long time, Thread threadWork) =>
+            threadWork.Join((int)time);
 
         /// <summary>
         /// Sleeps until either the time specified, or the thread is no longer alive.
         /// </summary>
-        /// <param name="Time">Time in milliseconds</param>
-        /// <param name="ThreadWork">The working thread</param>
-        public static bool SleepNoBlock(long Time, ThreadInstance ThreadWork) =>
-            ThreadWork.Wait((int)Time);
+        /// <param name="time">time in milliseconds</param>
+        /// <param name="threadWork">The working thread</param>
+        public static bool SleepNoBlock(long time, ThreadInstance threadWork) =>
+            threadWork.Wait((int)time);
 
         /// <summary>
         /// Gets the actual milliseconds time from the sleep time provided
         /// </summary>
-        /// <param name="Time">Sleep time</param>
+        /// <param name="time">Sleep time</param>
         /// <returns>How many milliseconds did it really sleep?</returns>
-        public static int GetActualMilliseconds(int Time)
+        public static int GetActualMilliseconds(int time)
         {
             var SleepStopwatch = new Stopwatch();
             SleepStopwatch.Start();
-            Thread.Sleep(Time);
+            Thread.Sleep(time);
             SleepStopwatch.Stop();
             return (int)SleepStopwatch.ElapsedMilliseconds;
         }
@@ -104,13 +91,13 @@ namespace Threadify.Manager
         /// <summary>
         /// Gets the actual ticks from the sleep time provided
         /// </summary>
-        /// <param name="Time">Sleep time</param>
+        /// <param name="time">Sleep time</param>
         /// <returns>How many ticks did it really sleep?</returns>
-        public static long GetActualTicks(int Time)
+        public static long GetActualTicks(int time)
         {
             var SleepStopwatch = new Stopwatch();
             SleepStopwatch.Start();
-            Thread.Sleep(Time);
+            Thread.Sleep(time);
             SleepStopwatch.Stop();
             return SleepStopwatch.ElapsedTicks;
         }
@@ -118,13 +105,13 @@ namespace Threadify.Manager
         /// <summary>
         /// Gets the actual time span from the sleep time provided
         /// </summary>
-        /// <param name="Time">Sleep time</param>
+        /// <param name="time">Sleep time</param>
         /// <returns>The time span which describes the actual time span from the sleep time provided</returns>
-        public static TimeSpan GetActualTimeSpan(int Time)
+        public static TimeSpan GetActualTimeSpan(int time)
         {
             var SleepStopwatch = new Stopwatch();
             SleepStopwatch.Start();
-            Thread.Sleep(Time);
+            Thread.Sleep(time);
             SleepStopwatch.Stop();
             return SleepStopwatch.Elapsed;
         }

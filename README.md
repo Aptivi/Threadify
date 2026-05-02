@@ -12,7 +12,7 @@
 
 <br>
 
-# Threadify (coming soon)
+# Threadify
     
 *A more powerful threading with support for restartable threads for C#*
 

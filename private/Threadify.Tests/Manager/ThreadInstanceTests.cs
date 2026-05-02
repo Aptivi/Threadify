@@ -376,7 +376,7 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetThreadWithChild.Stop, TimeSpan.FromSeconds(5));
             TargetThreadWithChild.IsStopping.ShouldBeFalse();
             TargetThreadWithChild.ShouldNotBeNull();
-            foreach (var childThread in TargetThreadWithChild.ChildThreads)
+            foreach (var childThread in TargetThreadWithChild.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
@@ -396,7 +396,7 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetParameterizedThreadWithChild.Stop, TimeSpan.FromSeconds(5));
             TargetParameterizedThreadWithChild.IsStopping.ShouldBeFalse();
             TargetParameterizedThreadWithChild.ShouldNotBeNull();
-            foreach (var childThread in TargetParameterizedThreadWithChild.ChildThreads)
+            foreach (var childThread in TargetParameterizedThreadWithChild.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
@@ -416,7 +416,7 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetThreadWithAppendingChild.Stop, TimeSpan.FromSeconds(5));
             TargetThreadWithAppendingChild.IsStopping.ShouldBeFalse();
             TargetThreadWithAppendingChild.ShouldNotBeNull();
-            foreach (var childThread in TargetThreadWithAppendingChild.ChildThreads)
+            foreach (var childThread in TargetThreadWithAppendingChild.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
@@ -436,7 +436,7 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetParameterizedThreadWithAppendingChild.Stop, TimeSpan.FromSeconds(5));
             TargetParameterizedThreadWithAppendingChild.IsStopping.ShouldBeFalse();
             TargetParameterizedThreadWithAppendingChild.ShouldNotBeNull();
-            foreach (var childThread in TargetParameterizedThreadWithAppendingChild.ChildThreads)
+            foreach (var childThread in TargetParameterizedThreadWithAppendingChild.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
@@ -456,11 +456,11 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetThreadWithChildrenOfChildren.Stop, TimeSpan.FromSeconds(5));
             TargetThreadWithChildrenOfChildren.IsStopping.ShouldBeFalse();
             TargetThreadWithChildrenOfChildren.ShouldNotBeNull();
-            foreach (var childThread in TargetThreadWithChildrenOfChildren.ChildThreads)
+            foreach (var childThread in TargetThreadWithChildrenOfChildren.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
-                foreach (var childChildThread in childThread.ChildThreads)
+                foreach (var childChildThread in childThread.childThreads)
                 {
                     childChildThread.IsStopping.ShouldBeFalse();
                     childChildThread.ShouldNotBeNull();
@@ -481,11 +481,11 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetParameterizedThreadWithChildrenOfChildren.Stop, TimeSpan.FromSeconds(5));
             TargetParameterizedThreadWithChildrenOfChildren.IsStopping.ShouldBeFalse();
             TargetParameterizedThreadWithChildrenOfChildren.ShouldNotBeNull();
-            foreach (var childThread in TargetParameterizedThreadWithChildrenOfChildren.ChildThreads)
+            foreach (var childThread in TargetParameterizedThreadWithChildrenOfChildren.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
-                foreach (var childChildThread in childThread.ChildThreads)
+                foreach (var childChildThread in childThread.childThreads)
                 {
                     childChildThread.IsStopping.ShouldBeFalse();
                     childChildThread.ShouldNotBeNull();
@@ -506,11 +506,11 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetThreadWithAppendingChildrenOfChildren.Stop, TimeSpan.FromSeconds(5));
             TargetThreadWithAppendingChildrenOfChildren.IsStopping.ShouldBeFalse();
             TargetThreadWithAppendingChildrenOfChildren.ShouldNotBeNull();
-            foreach (var childThread in TargetThreadWithAppendingChildrenOfChildren.ChildThreads)
+            foreach (var childThread in TargetThreadWithAppendingChildrenOfChildren.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
-                foreach (var childChildThread in childThread.ChildThreads)
+                foreach (var childChildThread in childThread.childThreads)
                 {
                     childChildThread.IsStopping.ShouldBeFalse();
                     childChildThread.ShouldNotBeNull();
@@ -531,11 +531,11 @@ namespace Threadify.Tests.Manager
             Should.CompleteIn(TargetParameterizedThreadWithAppendingChildrenOfChildren.Stop, TimeSpan.FromSeconds(5));
             TargetParameterizedThreadWithAppendingChildrenOfChildren.IsStopping.ShouldBeFalse();
             TargetParameterizedThreadWithAppendingChildrenOfChildren.ShouldNotBeNull();
-            foreach (var childThread in TargetParameterizedThreadWithAppendingChildrenOfChildren.ChildThreads)
+            foreach (var childThread in TargetParameterizedThreadWithAppendingChildrenOfChildren.childThreads)
             {
                 childThread.IsStopping.ShouldBeFalse();
                 childThread.ShouldNotBeNull();
-                foreach (var childChildThread in childThread.ChildThreads)
+                foreach (var childChildThread in childThread.childThreads)
                 {
                     childChildThread.IsStopping.ShouldBeFalse();
                     childChildThread.ShouldNotBeNull();
